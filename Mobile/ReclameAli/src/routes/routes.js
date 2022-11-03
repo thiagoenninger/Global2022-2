@@ -24,9 +24,17 @@ function Routes() {
           bottom: 14,
           left: 14,
           right: 14,
-          elevation: 0,
+          elevation: 10,
           borderRadius: 25,
           height: 60,
+
+          shadowColor:"#000",
+          shadowOffset:{
+            width: 0,
+            height: 5,
+          },
+          shadowOpacity: 0.34,
+          shadowRadius: 6.27,
         }
       }}  
     >

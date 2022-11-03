@@ -18,16 +18,21 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPList":{
+        "NSCameraUsageDescription": "This app needs access to your camera to scan QR codes.",
+        "NSPhotoLibraryUsageDescription": "This app needs access to your photo library to upload images."
+      }
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "blockedPermissions":["android.permission.CAMERA"]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     }
   }
-}
