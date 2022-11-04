@@ -2,15 +2,12 @@ import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import {Ionicons} from '@expo/vector-icons'
 import {useFonts} from 'expo-font'
-import {useNavigation} from '@react-navigation/native'
 
 import Via from "../../img/via.png"
 import Calcada from "../../img/calcada.png"
 import Acidente from "../../img/acidente.png"
 
-const Aviso = (props) => {
-
-  const {navigate} = useNavigation();
+export default function Aviso() {
 
   const [loaded] = useFonts({
     Montserrat: require('../../../assets/fonts/Montserrat.ttf'),
@@ -24,11 +21,7 @@ const Aviso = (props) => {
     <View style={styles.container}>
       <View style={styles.cabecalho}>
         <Text style={styles.title}>Criar um alerta</Text>
-        <Ionicons 
-          name="close" size={36} color="#707070" 
-          style={{position: 'absolute', top:40 , right: 0, marginRight: 20}}
-          onPress={() => navigate("Home")}
-        />
+        <View style={styles.barraCabecalho}></View>
       </View>
       <View style={styles.categoria}>
         <View style={styles.containerCat}>
@@ -48,7 +41,6 @@ const Aviso = (props) => {
   );
 }
 
-export default Aviso
 
 const styles = StyleSheet.create({
   container: {
@@ -59,9 +51,16 @@ const styles = StyleSheet.create({
   cabecalho:{
     width:"100%",
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
+    alignItems: "center",
     justifyContent: "center",
     padding:40,
+  },
+  barraCabecalho:{
+    width:"95%",
+    marginTop: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: "rgba(0,0,0,0.2)",
   },
   title: {
     color: '#707070',

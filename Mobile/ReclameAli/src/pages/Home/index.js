@@ -9,7 +9,6 @@ import * as Location from 'expo-location';
 
 const Home = (props) => {
 
-  const {navigate} = useNavigation();
 
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -42,14 +41,6 @@ const Home = (props) => {
 
   return (   
     <View style={styles.container}>
-      <View style={styles.addAlerta}>
-        <Ionicons 
-          name="add" 
-          size={42}
-          color="#2D93B4"
-          onPress={() => alert("Você será redirecionado para a página de criação de alerta")}
-          />
-      </View>
       <MapView 
         style={styles.map}
         showsUserLocation={true}
@@ -75,26 +66,5 @@ const styles = StyleSheet.create({
   map:{
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-  },
-  addAlerta:{
-    zIndex: 5,
-    position: 'absolute',
-    top:40,
-    left:20,
-    width: 50,
-    height: 50,
-    backgroundColor: '#fff',
-    borderRadius: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-
-    shadowColor:"#000",
-    shadowOffset:{
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.34,
-    shadowRadius: 3.27,
-    elevation: 10,
   }
 })

@@ -1,13 +1,10 @@
 import React from 'react';
 import { View, StyleSheet, Text} from 'react-native';
 import {useFonts} from 'expo-font'
-import {useNavigation} from '@react-navigation/native'
 
 
 
-export function Alertas() {
-
-  const {navigate} = useNavigation();
+export default function Alertas() {
 
   const [loaded] = useFonts({
     Montserrat: require('../../../assets/fonts/Montserrat.ttf'),
@@ -21,12 +18,12 @@ export function Alertas() {
     <View style={styles.container}>
       <View style={styles.cabecalho}>
         <Text style={styles.title}>Lista de alertas</Text>
+        <View style={styles.barraCabecalho}></View>
       </View>
     </View>
   );
 }
 
-export default Alertas
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +31,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cabecalho:{
-    padding:15,
+    width:"100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding:40,
+  },
+  barraCabecalho:{
+    width:"95%",
+    marginTop: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: "rgba(0,0,0,0.2)",
   },
   title: {
     color: '#707070',
