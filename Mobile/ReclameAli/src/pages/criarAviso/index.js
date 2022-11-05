@@ -1,13 +1,16 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, Pressable } from 'react-native';
 import {Ionicons} from '@expo/vector-icons'
 import {useFonts} from 'expo-font'
+import {useNavigation} from '@react-navigation/native'
 
 import Via from "../../img/via.png"
 import Calcada from "../../img/calcada.png"
 import Acidente from "../../img/acidente.png"
 
 export default function Aviso() {
+
+  const {navigate} = useNavigation()
 
   const [loaded] = useFonts({
     Montserrat: require('../../../assets/fonts/Montserrat.ttf'),
@@ -24,17 +27,32 @@ export default function Aviso() {
         <View style={styles.barraCabecalho}></View>
       </View>
       <View style={styles.categoria}>
-        <View style={styles.containerCat}>
-          <Image source={Via}/>
-          <Text style={styles.text}>Problemas na via</Text>
+        <View>
+          <Pressable 
+            style={styles.containerCat}
+            onPress={() => navigate("ProblemaVia")}
+            >
+            <Image source={Via}/>
+            <Text style={styles.text}>Problemas na via</Text>
+          </Pressable>
         </View>
-        <View style={styles.containerCat}>
-          <Image source={Calcada} />
-          <Text style={styles.text}>Problemas na calçada</Text>
+        <View>
+          <Pressable 
+            style={styles.containerCat}
+            onPress={() => navigate("ProblemaCalcada")}
+            >
+            <Image source={Calcada} />
+            <Text style={styles.text}>Problemas na calçada</Text>
+          </Pressable>
         </View>
-        <View style={styles.containerCat}>
-          <Image source={Acidente}/>
-          <Text style={styles.text}>Acidente de trânsito</Text>
+        <View>
+          <Pressable
+            style={styles.containerCat}
+            onPress={() => navigate("Acidente")}
+            >
+            <Image source={Acidente}/>
+            <Text style={styles.text}>Acidente de trânsito</Text>
+          </Pressable>
         </View>
       </View>
     </View>
