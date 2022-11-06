@@ -5,9 +5,9 @@ import { useNavigation } from '@react-navigation/native';
 
 import {Ionicons} from "@expo/vector-icons"
 
-import AcidenteTransito from "../../img/acidente.png"
+import ObjetoVia from "../../img/imgsVia/objetoVia.png"
 
-export default function Acidentes() {
+export default function ObjetoNaVia() {
 
   const [bgColor, setBgColor] = React.useState('rgba(0,0,0,0.1)')
 
@@ -21,12 +21,12 @@ export default function Acidentes() {
             name="chevron-back" 
             size={36} color="#707070" 
             style={{marginRight:30}}
-            onPress={() => navigate("Criar Aviso")}
+            onPress={() => navigate("ProblemaVia")}
             />
-          <Text style={styles.title}>Acidente de trânsito</Text>
+          <Text style={styles.title}>Objetos na via</Text>
         </View>
         <View style={styles.barraCabecalho}></View>
-        <Image source={AcidenteTransito} style={{height:100, width:100, marginTop:30}}/>
+        <Image source={ObjetoVia} style={{height:100, width:100, marginTop:30}}/>
       </View>
         <View style={{ padding:25, marginBottom:50}}>
           <TextInput

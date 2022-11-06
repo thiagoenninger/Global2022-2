@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image, Pressable} from 'react-native';
+import { View, StyleSheet, Text, Image, Pressable, TouchableHighlight} from 'react-native';
 import {useFonts} from 'expo-font'
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from "@expo/vector-icons";
@@ -11,6 +11,10 @@ import Acessibilidade from "../../img/imgsCalcada/acessibilidade.png"
 
 
 export default function Calcada() {
+
+  const [textColor1, setTextColor1] = React.useState('#707070')
+  const [textColor2, setTextColor2] = React.useState('#707070')
+  const [textColor3, setTextColor3] = React.useState('#707070')
 
   const {navigate} = useNavigation()
 
@@ -39,23 +43,38 @@ export default function Calcada() {
 
       <View>
         <View>
-          <Pressable style={styles.categoria}>
+          <Pressable
+            style={styles.categoria}
+            onPressIn={() => setTextColor1('#2D93B4')}
+            onPressOut={() => setTextColor1('#707070')}
+            onPress={() => navigate("ObjetoCalcada")}
+            >
             <Image source={Objeto} style={{height:80, width:80}}/>
-            <Text style={{marginLeft:35, fontSize:22, fontWeight:"bold", color:"#707070"}}>Objeto na calçada</Text>
+            <Text style={{marginLeft:35, fontSize:22, fontWeight:"bold", color:textColor1}}>Objeto na calçada</Text>
           </Pressable>
         </View>
 
         <View>
-          <Pressable style={styles.categoria}>
+          <Pressable 
+            style={styles.categoria}
+            onPressIn={() => setTextColor2('#2D93B4')}
+            onPressOut={() => setTextColor2('#707070')}
+            onPress={() => navigate("BuracoCalcada")}
+            >
             <Image source={Buraco} style={{height:80, width:80}}/>
-            <Text style={{marginLeft:35, fontSize:22, fontWeight:"bold", color:"#707070"}}>Buracos e avarias</Text>
+            <Text style={{marginLeft:35, fontSize:22, fontWeight:"bold", color:textColor2}}>Buracos e avarias</Text>
           </Pressable>
         </View>
 
         <View>
-          <Pressable style={styles.categoria}>
+          <Pressable 
+            style={styles.categoria}
+            onPressIn={() => setTextColor3('#2D93B4')}
+            onPressOut={() => setTextColor3('#707070')}
+            onPress={() => navigate("AcessibilidadeCalcada")}
+            >
             <Image source={Acessibilidade} style={{height:80, width:80}}/>
-            <Text style={{marginLeft:35, fontSize:22, fontWeight:"bold", color:"#707070"}}>Sem acessibilidade</Text>
+            <Text style={{marginLeft:35, fontSize:22, fontWeight:"bold", color:textColor3}}>Sem acessibilidade</Text>
           </Pressable>
         </View>
       </View>

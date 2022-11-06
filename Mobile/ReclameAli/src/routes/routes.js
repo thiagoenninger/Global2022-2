@@ -9,6 +9,16 @@ import ProblemaVia from "../pages/problemaVia";
 import ProblemaCalcada from "../pages/problemaCalcada";
 import Acidente from "../pages/Acidente";
 
+import ObjetoNaVia from "../components/via/ObjetoNaVia"
+import ObraNaVia from "../components/via/ObraNaVia"
+import SemaforoOff from "../components/via/SemaforoOff"
+import VeiculoParado from "../components/via/VeiculoParado"
+import AnimalNaVia from "../components/via/AnimalNaVia"
+
+import ObjetoCalcada from "../components/calcada/ObjetoCalcada"
+import BuracoCalcada from "../components/calcada/BuracoCalcada"
+import AcessibilidadeCalcada from "../components/calcada/AcessibilidadeCalcada"
+
 import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
@@ -231,6 +241,111 @@ export default function Routes() {
           },
         }}
       />
+
+      <Tab.Screen
+        name="ObjetoNaVia"
+        component={ObjetoNaVia}
+        options={{
+          tabBarButton: () => null,
+          tabBarStyle: {
+            bottom: -100,
+            backgroundColor: "rgba(219, 219, 219, 1)",
+            position: "absolute",
+          },
+        }}
+      />
+
+      <Tab.Screen
+        name="ObraNaVia"
+        component={ObraNaVia}
+        options={{
+          tabBarButton: () => null,
+          tabBarStyle: {
+            bottom: -100,
+            backgroundColor: "rgba(219, 219, 219, 1)",
+            position: "absolute",
+          },
+        }}
+      />
+
+      <Tab.Screen
+        name="SemaforoOff"
+        component={SemaforoOff}
+        options={{
+          tabBarButton: () => null,
+          tabBarStyle: {
+            bottom: -100,
+            backgroundColor: "rgba(219, 219, 219, 1)",
+            position: "absolute",
+          },
+        }}
+      />
+
+      <Tab.Screen
+        name="VeiculoParado"
+        component={VeiculoParado}
+        options={{
+          tabBarButton: () => null,
+          tabBarStyle: {
+            bottom: -100,
+            backgroundColor: "rgba(219, 219, 219, 1)",
+            position: "absolute",
+          },
+        }}
+      />
+
+      <Tab.Screen
+        name="AnimalNaVia"
+        component={AnimalNaVia}
+        options={{
+          tabBarButton: () => null,
+          tabBarStyle: {
+            bottom: -100,
+            backgroundColor: "rgba(219, 219, 219, 1)",
+            position: "absolute",
+          },
+        }}
+      />
+
+      <Tab.Screen
+        name="ObjetoCalcada"
+        component={ObjetoCalcada}
+        options={{
+          tabBarButton: () => null,
+          tabBarStyle: {
+            bottom: -100,
+            backgroundColor: "rgba(219, 219, 219, 1)",
+            position: "absolute",
+          },
+        }}
+      />
+
+      <Tab.Screen
+        name="BuracoCalcada"
+        component={BuracoCalcada}
+        options={{
+          tabBarButton: () => null,
+          tabBarStyle: {
+            bottom: -100,
+            backgroundColor: "rgba(219, 219, 219, 1)",
+            position: "absolute",
+          },
+        }}
+      />
+
+      <Tab.Screen
+        name="AcessibilidadeCalcada"
+        component={AcessibilidadeCalcada}
+        options={{
+          tabBarButton: () => null,
+          tabBarStyle: {
+            bottom: -100,
+            backgroundColor: "rgba(219, 219, 219, 1)",
+            position: "absolute",
+          },
+        }}
+      />
+
     </Tab.Navigator>
   );
 }

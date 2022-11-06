@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image, Pressable } from 'react-native';
+import { View, StyleSheet, Text, Image, Pressable, TouchableHighlight } from 'react-native';
 import {Ionicons} from '@expo/vector-icons'
 import {useFonts} from 'expo-font'
 import {useNavigation} from '@react-navigation/native'
@@ -9,6 +9,10 @@ import Calcada from "../../img/calcada.png"
 import Acidente from "../../img/acidente.png"
 
 export default function Aviso() {
+
+  const [textColor1, setTextColor1] = React.useState('#707070')
+  const [textColor2, setTextColor2] = React.useState('#707070')
+  const [textColor3, setTextColor3] = React.useState('#707070')
 
   const {navigate} = useNavigation()
 
@@ -30,28 +34,34 @@ export default function Aviso() {
         <View>
           <Pressable 
             style={styles.containerCat}
+            onPressIn={() => setTextColor1('#2D93B4')}
+            onPressOut={() => setTextColor1('#707070')}
             onPress={() => navigate("ProblemaVia")}
-            >
+          >
             <Image source={Via}/>
-            <Text style={styles.text}>Problemas na via</Text>
+            <Text style={{color:textColor1, fontSize:22, fontWeight:"bold", fontFamily:"Montserrat", marginLeft:30}}>Problemas na via</Text>
           </Pressable>
         </View>
         <View>
           <Pressable 
             style={styles.containerCat}
+            onPressIn={() => setTextColor2('#2D93B4')}
+            onPressOut={() => setTextColor2('#707070')}
             onPress={() => navigate("ProblemaCalcada")}
             >
             <Image source={Calcada} />
-            <Text style={styles.text}>Problemas na calçada</Text>
+            <Text style={{color:textColor2, fontSize:22, fontWeight:"bold", fontFamily:"Montserrat", marginLeft:30}}>Problemas na calçada</Text>
           </Pressable>
         </View>
         <View>
           <Pressable
             style={styles.containerCat}
+            onPressIn={() => setTextColor3('#2D93B4')}
+            onPressOut={() => setTextColor3('#707070')}
             onPress={() => navigate("Acidente")}
             >
             <Image source={Acidente}/>
-            <Text style={styles.text}>Acidente de trânsito</Text>
+            <Text style={{color:textColor3, fontSize:22, fontWeight:"bold", fontFamily:"Montserrat", marginLeft:30}}>Acidente de trânsito</Text>
           </Pressable>
         </View>
       </View>
@@ -102,12 +112,5 @@ const styles = StyleSheet.create({
     justifyContent:"flex-start",
     padding:15,
     marginBottom:15,
-  },
-  text:{
-    color:'#707070',
-    fontSize:22,
-    fontWeight:"bold",
-    fontFamily:"Montserrat",
-    marginLeft:30,
   },
 })
