@@ -1,11 +1,16 @@
 import React from 'react';
-import { View, StyleSheet, Text} from 'react-native';
+import { View, StyleSheet, Text, Image, Pressable} from 'react-native';
 import {useFonts} from 'expo-font'
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from "@expo/vector-icons";
 
 
-export default function Via() {
+import Objeto from "../../img/imgsCalcada/objeto.png"
+import Buraco from "../../img/imgsCalcada/buraco.png"
+import Acessibilidade from "../../img/imgsCalcada/acessibilidade.png"
+
+
+export default function Calcada() {
 
   const {navigate} = useNavigation()
 
@@ -31,6 +36,29 @@ export default function Via() {
         </View>
         <View style={styles.barraCabecalho}></View>
       </View>
+
+      <View>
+        <View>
+          <Pressable style={styles.categoria}>
+            <Image source={Objeto} style={{height:80, width:80}}/>
+            <Text style={{marginLeft:35, fontSize:22, fontWeight:"bold", color:"#707070"}}>Objeto na calçada</Text>
+          </Pressable>
+        </View>
+
+        <View>
+          <Pressable style={styles.categoria}>
+            <Image source={Buraco} style={{height:80, width:80}}/>
+            <Text style={{marginLeft:35, fontSize:22, fontWeight:"bold", color:"#707070"}}>Buracos e avarias</Text>
+          </Pressable>
+        </View>
+
+        <View>
+          <Pressable style={styles.categoria}>
+            <Image source={Acessibilidade} style={{height:80, width:80}}/>
+            <Text style={{marginLeft:35, fontSize:22, fontWeight:"bold", color:"#707070"}}>Sem acessibilidade</Text>
+          </Pressable>
+        </View>
+      </View>
     </View>
   );
 }
@@ -52,6 +80,7 @@ const styles = StyleSheet.create({
   barraCabecalho:{
     width:"85%",
     marginTop: 20,
+    marginBottom:20,
     borderBottomWidth: 2,
     borderBottomColor: "rgba(0,0,0,0.2)",
   },
@@ -66,5 +95,12 @@ const styles = StyleSheet.create({
     alignItems:"center",
     justifyContent:"flex-start",
     marginRight:20
+  },
+  categoria:{
+    width: 300,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    margin:15,
   }
 })
