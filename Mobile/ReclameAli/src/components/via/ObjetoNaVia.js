@@ -26,9 +26,16 @@ export default function ObjetoNaVia() {
           <Text style={styles.title}>Objetos na via</Text>
         </View>
         <View style={styles.barraCabecalho}></View>
-        <Image source={ObjetoVia} style={{height:100, width:100, marginTop:30}}/>
+        
       </View>
-        <View style={{ padding:25, marginBottom:50}}>
+        <View style={{alignItems:"center", justifyContent:"center", padding:25, marginVertical:50}}>
+          <View style={{display:"flex", flexDirection:"row", alignItems:"flex-start", marginBottom:30, justifyContent:"space-around"}}>
+            <Image source={ObjetoVia} style={{height:60, width:60}}/>
+            <TextInput
+              placeholder='Título'
+              style={{width:"75%", height:60, padding:10, fontSize:18, backgroundColor:"rgba(0,0,0,0.1)", borderRadius:15, marginLeft:15 }}
+            />
+          </View>
           <TextInput
             multiline={true}
             numberOfLines={5}
