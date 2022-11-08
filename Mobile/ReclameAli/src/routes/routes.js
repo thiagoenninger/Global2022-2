@@ -19,6 +19,8 @@ import ObjetoCalcada from "../components/calcada/ObjetoCalcada"
 import BuracoCalcada from "../components/calcada/BuracoCalcada"
 import AcessibilidadeCalcada from "../components/calcada/AcessibilidadeCalcada"
 
+import CriarNovoAviso from "../pages/novoAlerta"
+
 import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
@@ -88,9 +90,44 @@ export default function Routes() {
         }}
       />
 
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Criar Aviso"
         component={Avisos}
+        options={{
+          tabBarIcon: ({ color, size, focused }) => {
+            if (focused) {
+              return (
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: "#2D93B4",
+                    padding: 5,
+                    width: 110,
+                    height: 50,
+                    borderRadius: 50,
+                  }}
+                >
+                  <Ionicons name="add-circle" size={24} color="#fff" />
+                  <Text
+                    style={{ color: "#fff", fontWeight: "bold", marginLeft: 5 }}
+                  >
+                    Avisos
+                  </Text>
+                </View>
+              );
+            }
+            return (
+              <Ionicons name="add-circle-outline" size={size} color="#2D93B4" />
+            );
+          },
+        }}
+      /> */}
+
+<Tab.Screen
+        name="Novo Aviso"
+        component={CriarNovoAviso}
         options={{
           tabBarIcon: ({ color, size, focused }) => {
             if (focused) {
