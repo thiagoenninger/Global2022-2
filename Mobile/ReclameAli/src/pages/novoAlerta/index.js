@@ -6,6 +6,7 @@ import {
   Image,
   TextInput,
   Pressable,
+  FlatList
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useNavigation } from "@react-navigation/native";
@@ -13,6 +14,63 @@ import SelectList from "react-native-dropdown-select-list";
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
 import { Ionicons } from "@expo/vector-icons";
+
+
+const ListaCadastro = (props) => {
+  return(
+    <View style={{flex:1, flexDirection:"column", alignItems:"center", marginVertical:5}}>
+      <View style={{
+          flex:1,
+          width: "85%",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          alignItems: "center",
+          borderRadius: 10,
+          borderColor: "rgba(255,255,255,0.5)",
+          borderWidth: 0.5,
+          marginBottom: 10,
+          padding: 10,
+          backgroundColor:"#2D93B4",
+        }}>
+          <View>
+            <View style={{display:"flex", flexDirection:"row", marginBottom:10}}>
+              <Text style={{ color: "#e8e8e8", marginRight:10, fontSize:16 }}>
+                id: <Text style={{color:"#fff"}}>{props.item.id}</Text>
+              </Text>
+              <Text style={{ color: "#e8e8e8", marginRight:10, fontSize:16 }}>
+                Categoria: <Text style={{color:"#fff"}}>{props.item.categoria}</Text>
+              </Text>
+            </View>
+            <View style={{display:"flex", flexDirection:"row"}}>
+              <Text style={{ color: "#e8e8e8", marginRight:10, fontSize:16 }}>
+                Título: <Text style={{color:"#fff"}}>{props.item.titulo}</Text>
+              </Text>
+              <Text style={{ color: "#e8e8e8", marginRight:10, fontSize:16 }}>
+                Comentário: <Text style={{color:"#fff"}}>{props.item.comentario}</Text>
+              </Text>
+            </View>
+          </View>
+          <View>
+            <Ionicons
+              name="create-outline"
+              size={24}
+              color="#fff"
+              style={{marginRight:10}}
+              onPress={() => {props.onEdit(props.item.id)}}
+            />
+            <Ionicons
+              name="trash-outline"
+              size={24}
+              color="#fff"
+              style={{marginRight:10}}
+              onPress={() => {props.onDelete(props.item.id)}}
+            />
+          </View>
+      </View>
+    </View>
+  )
+}
+
 
 export default function NovoAlerta() {
   const [bgColor, setBgColor] = useState("rgba(0,0,0,0.1)");
@@ -38,6 +96,19 @@ export default function NovoAlerta() {
 
   const [lista, setLista] = useState([])
   const [counter, setCounter] = useState(0)
+
+  useEffect(() => {
+    AsyncStorage.getItem("lista").then(
+      (texto) => {
+        let value = []
+        if (texto !== null) {
+          value = JSON.parse(texto)
+        }
+        setLista(value.lista)
+        setCounter(value.counter + 1)
+      }
+    )
+  }, [id])
 
   function criarAviso() {
     const tempLista = [...lista]
@@ -70,6 +141,28 @@ export default function NovoAlerta() {
     return -1
   }
 
+  function editAviso(id) {
+    const indice = procurarPorId(id)
+    if (indice != -1) {
+      const obj = lista[indice]
+      setId(obj.id)
+      setTitulo(obj.titulo)
+      setComentario(obj.comentario)
+      setCategoria(obj.categoria)
+    }
+  }
+
+  function deleteAviso(id) {
+    const indice = procurarPorId(id)
+    const tempLista = [...lista]
+    tempLista.splice(indice, 1)
+    setLista(tempLista)
+
+    AsyncStorage.setItem("lista", JSON.stringify({lista:tempLista, counter: counter}))
+  }
+
+  const nomeBotao = (id !== "") ? "Editar" : "Criar"
+
   return (
     <KeyboardAwareScrollView style={styles.container}>
       <View style={styles.cabecalho}>
@@ -82,10 +175,10 @@ export default function NovoAlerta() {
           alignItems: "center",
           justifyContent: "center",
           padding: 25,
-          marginVertical: 50,
+          marginBottom: 5,
         }}
       >
-        <View style={{flex:1, width:"100%", marginBottom:30, fontSize:18}}>
+        <View style={{flex:1, width:"100%", marginBottom:15, fontSize:18}}>
           <SelectList 
             setSelected={setCategoria} 
             data={data}
@@ -113,7 +206,7 @@ export default function NovoAlerta() {
             fontSize: 18,
             backgroundColor: "rgba(0,0,0,0.1)",
             borderRadius: 15,
-            marginBottom: 15,
+            marginBottom: 10,
           }}
           value={titulo}
           onChangeText={setTitulo}
@@ -124,12 +217,12 @@ export default function NovoAlerta() {
           placeholder="Comentário"
           style={{
             width: "100%",
-            height: 200,
+            height: 150,
             textAlignVertical: "top",
             padding: 10,
             fontSize: 18,
             backgroundColor: "rgba(0,0,0,0.1)",
-            borderRadius: 15,
+            borderRadius: 10,
           }}
           value={comentario}
           onChangeText={setComentario}
@@ -140,7 +233,7 @@ export default function NovoAlerta() {
           flex: 1,
           alignItems: "center",
           justifyContent: "center",
-          bottom: 40,
+          marginBottom: 30,
         }}
       >
         <Pressable
@@ -154,15 +247,24 @@ export default function NovoAlerta() {
             borderWidth: 3,
             borderColor: "#2D93B4",
             borderRadius: 25,
+            
           }}
           onPressIn={() => setBgColor("#2D93B4")}
           onPressOut={() => setBgColor("rgba(0,0,0,0.1)")}
           onPress={() => criarAviso()}
         >
-          <Text style={{ fontSize: 18, fontWeight: "bold", color: "#707070" }}>
-            Cadastrar
+          <Text style={{ fontSize: 24, fontWeight: "bold", color: "#707070" }}>
+            {nomeBotao}
           </Text>
         </Pressable>
+      </View>
+      <View style={{flex:5}}>
+          <FlatList
+            data={lista}
+            renderItem={(props) => <ListaCadastro {...props}
+            onEdit={editAviso}
+            onDelete={deleteAviso}/>}
+          />
       </View>
     </KeyboardAwareScrollView>
   );
@@ -178,7 +280,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    paddingTop: 40,
+    paddingTop: 20,
   },
   barraCabecalho: {
     width: "85%",
@@ -192,6 +294,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   categoria:{
+    flex:1,
     color: "#707070",
     fontSize: 18,
     fontWeight: "bold",
